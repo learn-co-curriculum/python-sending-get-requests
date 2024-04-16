@@ -194,8 +194,21 @@ import json
 Then we pass in `response.body` to the JSON parser:
 
 ```py
-json.loads(response.content)
+print(json.loads(response.content))
 
+```
+Wrap the json parser in a print() method and run it to see how the format has been updated:
+
+```bash
+[{'name': 'Flatiron School Manhattan', 'address': '11 Broadway, New York, NY 10004', 'coordinates': {'latitude': '40.704521', 'longitude': '-74.012833'}}, {'name': 'Flatiron School Austin', 'address': '316 W 12th St, Austin, TX 78701', 'coordinates': {'latitude': '30.275080', 'longitude': '-97.743700'}}, {'name': 'Flatiron School Denver', 'address': '3601 Walnut St 5th Floor, Denver, CO 80205', 'coordinates': {'latitude': '39.743510', 'longitude': '-105.011360'}}, {'name': 'Flatiron School Seattle', 'address': '1411 4th Ave 13th Floor, Seattle, WA 98101', 'coordinates': {'latitude': '47.684879', 'longitude': '-122.201363'}}, {'name': 'Flatiron School London', 'address': '131 Finsbury Pavement, Finsbury, London EC2A 1NT, UK', 'coordinates': {'latitude': '51.520480', 'longitude': '-0.087190'}}]
+```
+
+**Aside**: If you'd like a better view of this data, You can use the json `dumps`
+method. The `indent = 4` argument will format the json in a more readable manner.
+
+```py
+json_content = json.loads(response.text)
+print(json.dumps(json_content, indent=4, sort_keys=True))
 ```
 
 The result is an list containing five dictionaries, each with some data about a
@@ -245,14 +258,6 @@ Flatiron School campus:
    }
 ]
 
-```
-
-**Aside**: If you'd like a better view of this data, You can use the json `dumps`
-method. The `indent = 4` argument will format the json in a more readable manner.
-
-```py
-json_content = json.loads(response.text)
-print(json.dumps(json_content, indent=4, sort_keys=True))
 ```
 
 The completed code for this example is in the `get.py` file. Try updating this
